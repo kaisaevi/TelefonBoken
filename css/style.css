@@ -1,0 +1,14 @@
+body {
+  background-color: bisque;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h4 {
+  margin: 5%;
+}
+
+h2 {
+  margin: 5%;
+}
