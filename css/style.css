@@ -10,5 +10,28 @@ h4 {
 }
 
 h2 {
-  margin: 5%;
+  margin-top: 20%;
+}
+#error-message {
+  color: red;
+  font-weight: bold;
+  /* display: none; */
+}
+.input {
+  display: flex;
+}
+
+input {
+  margin: 5px;
+  max-width: 30vh;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin: 5px;
+  max-width: 20vh;
 }
