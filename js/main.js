@@ -27,28 +27,50 @@ function addContactToList() {
     if (errorController()) {
         return;
     }
-
     let contactItem = document.createElement('li');
     let container = document.createElement('div');
-    let inputItem = document.createElement('input');
-    inputItem.type = 'text';
+    let item = document.createElement('div');
     
     let inputContactName = inputName.value;
     let inputContactNumber = inputNumber.value;
 
     let changeBtn = document.createElement('button');
-    changeBtn.innerText = 'Ändra';
+    changeBtn.textContent = 'Ändra';
     
     let removeBtn = document.createElement('button');
-    removeBtn.innerText = 'Radera';
+    removeBtn.textContent = 'Radera';
 
-    let contactInfo = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}` + changeBtn + removeBtn;
-    inputItem.value = contactInfo;
+    let contactInfo = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
+    item.textContent = contactInfo;
     
-    container.append(inputItem);
-    container.append(changeBtn, removeBtn);
+    container.append(item, changeBtn, removeBtn);
     contactItem.append(container);
     contactList.append(contactItem);
+
+    //Function för ändra-knappen
+    changeBtn.addEventListener('click', function () {
+        let nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.value = inputContactName;
+
+        let numberInput = document.createElement('input');
+        numberInput.type = 'text';
+        numberInput.value = inputContactNumber;
+
+        item.innerHTML = '';
+        item.appendChild(nameInput);
+        item.appendChild(numberInput);
+
+        nameInput.addEventListener('blur', function () {
+            inputContactName = nameInput.value;
+            item.innerHTML = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
+        });
+
+        numberInput.addEventListener('blur', function () {
+            inputContactNumber = numberInput.value;
+            item.innerHTML = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
+        });
+    });
 }
 
 addBtn.addEventListener('click', addContactToList);
