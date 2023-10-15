@@ -61,16 +61,33 @@ function addContactToList() {
         item.appendChild(nameInput);
         item.appendChild(numberInput);
 
-        nameInput.addEventListener('blur', function () {
+        changeBtn.addEventListener('click', function () {
             inputContactName = nameInput.value;
-            item.innerHTML = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
-        });
-
-        numberInput.addEventListener('blur', function () {
             inputContactNumber = numberInput.value;
             item.innerHTML = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
         });
+
+        changeBtn.addEventListener('click', function () {
+            if (inputContactName === "" || inputContactNumber === "") {
+                let emptyValueMessage = document.createElement('div');
+                emptyValueMessage.textContent = "Du kan inte skapa tomma kontakt.";
+                emptyValueMessage.setAttribute('id', 'invalid-value-message');
+                item.appendChild(emptyValueMessage);
+            } if (isNaN(inputNumber.value)) {
+                let invalidNumberMessage = document.createElement('div');
+                invalidNumberMessage.textContent = "Vänligen ange ett giltigt nummer."
+                invalidNumberMessage.setAttribute('id', 'invalid-value-message');
+                item.appendChild(invalidNumberMessage);
+            } else {
+            inputContactNumber = numberInput.value;
+            item.innerHTML = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
+            }
+        });
     });
-}
+        //Function för radera-knappen
+        removeBtn.addEventListener('click', function(e) {
+            e.target.parentNode.parentNode.remove(); 
+        });
+};
 
 addBtn.addEventListener('click', addContactToList);

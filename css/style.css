@@ -17,6 +17,10 @@ h2 {
   font-weight: bold;
   display: none;
 }
+#invalid-value-message {
+  color: red;
+  font-weight: bold;
+}
 .input {
   display: flex;
 }
