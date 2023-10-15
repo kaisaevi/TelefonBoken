@@ -71,8 +71,7 @@ function addContactToList() {
             numberInput.className = 'numberInput';
 
             item.innerHTML = '';
-            item.appendChild(nameInput);
-            item.appendChild(numberInput);
+            item.append(nameInput, numberInput);
 
         } else {
             e.target.setAttribute('knappState', 'Ändra');
@@ -81,29 +80,16 @@ function addContactToList() {
             let numberInput = divItem.querySelector('.numberInput');
             let name = nameInput.value;
             let number = numberInput.value;
-            divItem.innerHTML = `Namn: ${name}, Nummer: ${number}`;
+            if (name === "" || number === "" || isNaN(numberInput.value)) {
+                let emptyValueMessage = document.createElement('div');
+                emptyValueMessage.textContent = "Du kan inte skapa tomma kontakt eller ange ogiltiga nummer.";
+                emptyValueMessage.setAttribute('id', 'invalid-value-message');
+                divItem.appendChild(emptyValueMessage);
+                e.target.setAttribute('knappState', 'Spara');
+            } else {
+                divItem.innerHTML = `Namn: ${name}, Nummer: ${number}`;
+            }
         }
-
-
-
-
-
-        // changeBtn.addEventListener('click', function () {
-        //     if (inputContactName === "" || inputContactNumber === "") {
-        //         let emptyValueMessage = document.createElement('div');
-        //         emptyValueMessage.textContent = "Du kan inte skapa tomma kontakt.";
-        //         emptyValueMessage.setAttribute('id', 'invalid-value-message');
-        //         item.appendChild(emptyValueMessage);
-        //     } if (isNaN(inputNumber.value)) {
-        //         let invalidNumberMessage = document.createElement('div');
-        //         invalidNumberMessage.textContent = "Vänligen ange ett giltigt nummer."
-        //         invalidNumberMessage.setAttribute('id', 'invalid-value-message');
-        //         item.appendChild(invalidNumberMessage);
-        //     } else {
-        //     inputContactNumber = numberInput.value;
-        //     item.innerHTML = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
-        //     }
-        // });
     });
         //Function för radera-knappen
         removeBtn.addEventListener('click', function(e) {
