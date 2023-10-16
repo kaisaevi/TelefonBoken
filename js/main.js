@@ -1,18 +1,19 @@
-let inputName = document.querySelector('#add-name');
-let inputNumber = document.querySelector('#add-mobile-number');
+const inputName = document.querySelector('#add-name');
+const inputNumber = document.querySelector('#add-mobile-number');
 
-let errorMessage = document.querySelector('#error-message');
-let addBtn = document.querySelector('#add-contact-btn');
-let removeListBtn = document.querySelector('#remove-contactlist-btn');
-let contactList = document.querySelector('#contact-list');
+const errorMessage = document.querySelector('#error-message');
+const addBtn = document.querySelector('#add-contact-btn');
+const removeListBtn = document.querySelector('#remove-contactlist-btn');
+const contactList = document.querySelector('#contact-list');
 
-let inputContactName = inputName.value;
-let inputContactNumber = inputNumber.value;
+const inputContactName = inputName.value;
+const inputContactNumber = inputNumber.value;
 
+//Funktion för att radera hela kontaktlistan
 removeListBtn.addEventListener('click', function(){
     contactList.innerHTML = "";
 });
-
+//Funktion för error-meddelandet
 function errorController(inputContactName, inputContactNumber) {
     if (inputName.value.trim() === "" || isNaN(inputNumber.value) || inputNumber.value.trim() === "") {
                 errorMessage.style.display = "block";
@@ -21,80 +22,89 @@ function errorController(inputContactName, inputContactNumber) {
                 errorMessage.style.display = "none";
                 return false;
     }
+};
+//Funktion för ändra-knappen
+function changeContact(event){
+        if (event.target.getAttribute('knappState') === 'Ändra') {
+            event.target.setAttribute('knappState', 'Spara');
+            const divItem = event.target.parentNode.querySelector('.divItem');
+            const info = divItem.innerHTML;
+            const infoArray = info.split(" ");
+            const number = infoArray[3];
+            const name = infoArray[1].slice(0, -1);
+
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.value = name;
+            nameInput.className = 'nameInput';
+    
+            const numberInput = document.createElement('input');
+            numberInput.type = 'text';
+            numberInput.value = number;
+            numberInput.className = 'numberInput';
+
+            divItem.innerHTML = '';
+            divItem.append(nameInput, numberInput);
+
+        } else {
+            event.target.setAttribute('knappState', 'Ändra');
+            const divItem = event.target.parentNode.querySelector('.divItem');
+            const nameInput = divItem.querySelector('.nameInput');
+            const numberInput = divItem.querySelector('.numberInput');
+            const name = nameInput.value;
+            const number = numberInput.value;
+            if (name === "" || number === "" || isNaN(numberInput.value)) {
+                const emptyValueMessage = document.createElement('div');
+                emptyValueMessage.textContent = "Du kan inte skapa tomma kontakt eller ange ogiltiga nummer.";
+                emptyValueMessage.setAttribute('id', 'invalid-value-message');
+                divItem.appendChild(emptyValueMessage);
+                event.target.setAttribute('knappState', 'Spara');
+            } else {
+                divItem.innerHTML = `Namn: ${name}, Nummer: ${number}`;
+            }
+        }
+    };
+//Funktion för att radera en specifik kontakt
+function deleteContact(event) {
+    event.target.parentNode.parentNode.remove(); 
 }
 
+//Funktion för att kunna lägga till en kontakt i listan
 function addContactToList() {
     if (errorController()) {
         return;
     }
-    let contactItem = document.createElement('li');
-    let container = document.createElement('div');
-    let item = document.createElement('div');
+    const contactItem = document.createElement('li');
+    const container = document.createElement('div');
+    const item = document.createElement('div');
     item.className = 'divItem';
     
-    let inputContactName = inputName.value;
-    let inputContactNumber = inputNumber.value;
+    const inputContactName = inputName.value;
+    const inputContactNumber = inputNumber.value;
 
-    let changeBtn = document.createElement('button');
+    const changeBtn = document.createElement('button');
     changeBtn.textContent = 'Ändra';
     changeBtn.setAttribute('knappState', 'Ändra');
     
-    let removeBtn = document.createElement('button');
+    const removeBtn = document.createElement('button');
     removeBtn.textContent = 'Radera';
 
-    let contactInfo = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
+    const contactInfo = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
     item.textContent = contactInfo;
     
     container.append(item, changeBtn, removeBtn);
     contactItem.append(container);
     contactList.append(contactItem);
 
-    //Function för ändra-knappen
-    changeBtn.addEventListener('click', function (e) {
+    //Lägger till function för ändra-knappen
+    changeBtn.addEventListener('click', changeContact);
 
-        if (e.target.getAttribute('knappState') === 'Ändra') {
-            e.target.setAttribute('knappState', 'Spara');
-            let divItem = e.target.parentNode.querySelector('.divItem');
-            let info = divItem.innerHTML;
-            let infoArray = info.split(" ");
-            let number = infoArray[3];
-            let name = infoArray[1].slice(0, -1);
+    //Lägger till function för radera-knappen
+    removeBtn.addEventListener('click', deleteContact);
 
-            let nameInput = document.createElement('input');
-            nameInput.type = 'text';
-            nameInput.value = name;
-            nameInput.className = 'nameInput';
-    
-            let numberInput = document.createElement('input');
-            numberInput.type = 'text';
-            numberInput.value = number;
-            numberInput.className = 'numberInput';
-
-            item.innerHTML = '';
-            item.append(nameInput, numberInput);
-
-        } else {
-            e.target.setAttribute('knappState', 'Ändra');
-            let divItem = e.target.parentNode.querySelector('.divItem');
-            let nameInput = divItem.querySelector('.nameInput');
-            let numberInput = divItem.querySelector('.numberInput');
-            let name = nameInput.value;
-            let number = numberInput.value;
-            if (name === "" || number === "" || isNaN(numberInput.value)) {
-                let emptyValueMessage = document.createElement('div');
-                emptyValueMessage.textContent = "Du kan inte skapa tomma kontakt eller ange ogiltiga nummer.";
-                emptyValueMessage.setAttribute('id', 'invalid-value-message');
-                divItem.appendChild(emptyValueMessage);
-                e.target.setAttribute('knappState', 'Spara');
-            } else {
-                divItem.innerHTML = `Namn: ${name}, Nummer: ${number}`;
-            }
-        }
-    });
-        //Function för radera-knappen
-        removeBtn.addEventListener('click', function(e) {
-            e.target.parentNode.parentNode.remove(); 
-        });
+    //Tömmer inputfälten när användaren har lagt till en kontakt 
+    inputName.value = '';
+    inputNumber.value = '';
 };
-
+//Lägger till function för läggtillkontakt-knappen
 addBtn.addEventListener('click', addContactToList);

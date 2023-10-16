@@ -1,21 +1,37 @@
 body {
-  background-color: bisque;
+  background-color: #d8c3ba;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+main {
+  background-color: #492d3b;
+  width: 50%;
+  margin-top: 5%;
 }
 
-h4 {
-  margin: 5%;
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h2 {
-  margin-top: 20%;
+h3 {
+  margin-top: 5%;
+  color: #d8c3ba;
+  padding-left: 20px;
+  font-size: 30px;
+}
+
+#second-h3 {
+  padding-top: 30px;
 }
 #error-message {
   color: red;
   font-weight: bold;
   display: none;
+  margin-left: 20px;
 }
 #invalid-value-message {
   color: red;
@@ -23,17 +39,53 @@ h2 {
 }
 .input {
   display: flex;
+  color: #492d3b;
 }
 
 input {
   margin: 5px;
   max-width: 30vh;
+  padding: 8px;
+  color: #492d3b;
+  margin-left: 20px;
+  border-radius: 5px;
+  border: 1px solid #caa4a5;
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+}
+
+li {
+  color: #d8c3ba;
+}
+
+div {
+  font-size: 18px;
+  color: #d8c3ba;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 button {
-  margin: 5px;
+  margin-top: 10px;
+  margin-left: 20px;
   max-width: 20vh;
-  padding: 5px 10px 5px 10px;
-  background-color: darksalmon;
+  padding: 5px 8px 5px 8px;
+  background-color: #caa4a5;
   border-radius: 10px;
+  color: #492d3b;
+  width: 45vh;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  text-shadow: 1px 1px 2px #664f56(0, 0, 0, 0.5);
+}
+button:hover {
+  background-color: #d8c3ba;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #664f56;
+}
+i {
+  color: #caa4a5;
 }

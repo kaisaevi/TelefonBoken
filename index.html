@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kontaktlista</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/f838759c34.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="js/main.js" defer></script>
   </head>
   <body>
     <main>
       <section>
-        <h4>Lägg till kontakter</h4>
+        <h3><i class="fa-solid fa-phone"></i> Lägg till kontakter</h3>
         <div class="input">
-          <input id="add-name" placeholder="Namn" />
+          <input id="add-name" placeholder="Namn" autofocus />
           <input id="add-mobile-number" placeholder="Telefonnummer" />
         </div>
         <div>
@@ -24,32 +28,12 @@
         </div>
       </section>
       <section>
-        <h2>Kontaktlista</h2>
+        <h3 id="second-h3">
+          <i class="fa-solid fa-address-book"></i>
+          Kontaktlista
+        </h3>
         <ul id="contact-list"></ul>
       </section>
     </main>
   </body>
 </html>
-
-<!-- <main>
-      <section1>
-        <h4>Lägg till kontakter</h4>
-        <div class="input">
-          <input id="add-name" placeholder="Namn" />
-          <input id="add-mobile-number" placeholder="Telefonnummer" />
-        </div>
-        <div>
-          <button id="add-contact-btn">Lägg till kontakt</button>
-          <button id="remove-contactlist-btn">Radera kontaktlista</button>
-        </div>
-        <div id="error-message">
-          Vänligen fyll i både namn och telefonnummer i korrekt form.
-        </div>
-      </section>
-      <section2>
-        <h2>Kontaktlista</h2>
-        <ul id="contact-list">
-          <li><div>Kontakt 1</div><button>Ändra</button><button>Radera</button></li>
-        </ul>
-      </section>
-    </main> -->
