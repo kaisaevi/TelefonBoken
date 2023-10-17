@@ -5,6 +5,7 @@ body {
   align-items: center;
   font-family: "Montserrat", sans-serif;
 }
+
 main {
   background-color: #492d3b;
   width: 50%;
@@ -27,16 +28,19 @@ h3 {
 #second-h3 {
   padding-top: 30px;
 }
+
 #error-message {
   color: red;
   font-weight: bold;
   display: none;
   margin-left: 20px;
 }
+
 #invalid-value-message {
   color: red;
   font-weight: bold;
 }
+
 .input {
   display: flex;
   color: #492d3b;
@@ -56,6 +60,7 @@ input {
 
 li {
   color: #d8c3ba;
+  list-style: none;
 }
 
 div {
@@ -68,15 +73,19 @@ div {
 button {
   margin-top: 10px;
   margin-left: 20px;
-  max-width: 20vh;
   padding: 5px 8px 5px 8px;
   background-color: #caa4a5;
   border-radius: 10px;
   color: #492d3b;
-  width: 45vh;
+  width: 26vh;
   font-family: "Montserrat", sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   text-shadow: 1px 1px 2px #664f56(0, 0, 0, 0.5);
+}
+
+#buttonsContactList {
+  margin-left: 0px;
+  margin-right: 23px;
 }
 button:hover {
   background-color: #d8c3ba;
@@ -86,6 +95,11 @@ button:hover {
 button:active {
   background-color: #664f56;
 }
+
 i {
   color: #caa4a5;
+}
+
+hr {
+  color: #664f56;
 }
