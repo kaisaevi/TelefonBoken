@@ -83,6 +83,10 @@ button {
   text-shadow: 1px 1px 2px #664f56(0, 0, 0, 0.5);
 }
 
+#buttonsContactList {
+  margin-left: 0px;
+  margin-right: 23px;
+}
 button:hover {
   background-color: #d8c3ba;
   cursor: pointer;

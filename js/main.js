@@ -85,9 +85,11 @@ function addContactToList() {
     const changeBtn = document.createElement('button');
     changeBtn.textContent = 'Ändra';
     changeBtn.setAttribute('knappState', 'Ändra');
+    changeBtn.id = 'buttonsContactList';
     
     const removeBtn = document.createElement('button');
     removeBtn.textContent = 'Radera';
+    removeBtn.id = 'buttonsContactList';
 
     const contactInfo = `Namn: ${inputContactName}, Nummer: ${inputContactNumber}`;
     item.textContent = contactInfo;
