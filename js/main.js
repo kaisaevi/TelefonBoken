@@ -96,6 +96,9 @@ function addContactToList() {
     contactItem.append(container);
     contactList.append(contactItem);
 
+    const hr = document.createElement('hr');
+    contactList.append(hr);
+
     //Lägger till function för ändra-knappen
     changeBtn.addEventListener('click', changeContact);
 
